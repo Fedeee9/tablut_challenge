@@ -19,11 +19,11 @@ import it.unibo.ai.didattica.competition.tablut.exceptions.PawnException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.StopException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.ThroneException;
 import it.unibo.ai.didattica.competition.tablut.teampedro.domain.MyRules;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedBlackHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedWhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.BlackHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.Heuristic;
+import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.GameManager;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.StatsManager;
 
