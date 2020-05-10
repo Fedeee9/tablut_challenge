@@ -27,6 +27,7 @@ import it.unibo.ai.didattica.competition.tablut.teampedro.domain.MyGameTablutRul
 import it.unibo.ai.didattica.competition.tablut.teampedro.domain.MyRules;
 import it.unibo.ai.didattica.competition.tablut.teampedro.gui.GuiCli;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.GameManager;
+import it.unibo.ai.didattica.competition.tablut.teampedro.util.StatsManager;
 
 public class TeamPedroTablutClient extends TablutClient {
 
@@ -76,7 +77,7 @@ public class TeamPedroTablutClient extends TablutClient {
 		int depth = 8;
 		int numThread = 8;
 
-		String usage = "Usage: java teampallo COLOR [-t <timeout>] [-p <core>] [-d <max_depth>]\n"
+		String usage = "Usage: java teampedro COLOR [-t <timeout>] [-p <core>] [-d <max_depth>]\n"
 				+ "\t<timeout> must be an integer (default 55)\n" + "\t<core> must be an integer (default 8\n"
 				+ "\t<max_depth> must be an integer (default 8)\n";
 
@@ -162,6 +163,7 @@ public class TeamPedroTablutClient extends TablutClient {
 	//DA MODIFICARE
 	private synchronized static void printName() {
 		System.out.println();
+		//System.out.println("teampedro");
 		System.out.println(" â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ–ˆâ•—      â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•—     â–ˆâ–ˆâ•—      â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—");
 		System.out.println(" â•šâ•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â•�â•�â•�â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ•‘      â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•�â•�â–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•�â•�â•�â–ˆâ–ˆâ•—");
 		System.out.println("    â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â–ˆâ–ˆâ–ˆâ–ˆâ•”â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•�â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘");
@@ -258,20 +260,24 @@ public class TeamPedroTablutClient extends TablutClient {
 				// ï¿½ il turno dell'avversario
 				else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
 					System.out.println("Waiting for your opponent move... ");
+					StatsManager.getInstance().printResults();
 				}
 				// ho vinto
 				else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 					System.out.println("YOU WIN!");
+					StatsManager.getInstance().printResults();
 					System.exit(0);
 				}
 				// ho perso
 				else if (state.getTurn().equals(StateTablut.Turn.BLACKWIN)) {
 					System.out.println("YOU LOSE!");
+					StatsManager.getInstance().printResults();
 					System.exit(0);
 				}
 				// pareggio
 				else if (state.getTurn().equals(StateTablut.Turn.DRAW)) {
 					System.out.println("DRAW!");
+					//StatsManager.getInstance().printResults();
 					System.exit(0);
 				}
 
@@ -310,14 +316,18 @@ public class TeamPedroTablutClient extends TablutClient {
 
 				else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 					System.out.println("Waiting for your opponent move... ");
+					StatsManager.getInstance().printResults();
 				} else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 					System.out.println("YOU LOSE!");
+					StatsManager.getInstance().printResults();
 					System.exit(0);
 				} else if (state.getTurn().equals(StateTablut.Turn.BLACKWIN)) {
 					System.out.println("YOU WIN!");
+					StatsManager.getInstance().printResults();
 					System.exit(0);
 				} else if (state.getTurn().equals(StateTablut.Turn.DRAW)) {
 					System.out.println("DRAW!");
+					//StatsManager.getInstance().printResults();
 					System.exit(0);
 				}
 
