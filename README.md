@@ -4,7 +4,7 @@ Software for the Tablut Students Competition
 ## How to start player
 Clone the repository
 ```
-git clone https://github.com/luca-ant/tablutchallenge.git
+git clone https://github.com/Fedeee9/tablut_challenge.git
 ```
 
 Run JAR file. The first argument must be your color (BLACK or WHITE)
