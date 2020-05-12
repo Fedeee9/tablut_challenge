@@ -1,52 +1,48 @@
 # TablutCompetition
 Software for the Tablut Students Competition
 
-## Installation on Ubuntu/Debian 
-
-From console, run these commands to install JDK 8 e ANT:
-
+## How to start player
+Clone the repository
 ```
-sudo apt update
-sudo apt install openjdk-8-jdk -y
-sudo apt install ant -y
+git clone https://github.com/Fedeee9/tablut_challenge.git
 ```
 
-Now, clone the project repository:
+Run JAR file. The first argument must be your color (BLACK or WHITE)
 
-```
-git clone https://github.com/AGalassi/TablutCompetition.git
-```
+`
+java -jar teampedro.jar BLACK
+`
 
-## Run the Server without Eclipse
+or
 
-The easiest way is to utilize the ANT configuration script from console.
-Go into the project folder (the folder with the `build.xml` file):
-```
-cd TablutCompetition/Tablut
-```
+`
+java -jar teampedro.jar WHITE
+`
 
-Compile the project:
+## FOR UNIBO CHALLENGE
+Run JAR file with **-p 2** option
 
-```
-ant clean
-ant compile
-```
+`
+java -jar teampedro.jar BLACK -p 2
+`
 
-The compiled project is in  the `build` folder.
-Run the server with:
+or
 
-```
-ant server
-```
+`
+java -jar teampedro.jar WHITE -p 2
+`
 
-Check the behaviour using the random players in two different console windows:
 
-```
-ant randomwhite
+### Optionally you can add some arguments to change the execution
 
-ant randomblack
-```
+**-t [timeout]** -> to change timeout for each move (*default 55 sec*)
 
-At this point, a window with the game state should appear.
+**-p [core]** -> to set threading option (*default 8*)
 
-To be able to run other classes, change the `build.xml` file and re-compile everything
+**-d [max_depth]** -> to change max depth which min-max alghoritm try to reach (*default 8*)
+
+**Example of used option parameters:**
+
+`
+java -jar teampedro.jar BLACK -t 30
+`
