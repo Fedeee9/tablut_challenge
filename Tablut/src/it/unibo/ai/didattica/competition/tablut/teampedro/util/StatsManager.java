@@ -8,6 +8,9 @@ public class StatsManager {
 	private long end;
 	private int expandedNodes;
 	private long occupiedMemory;
+	
+	//private long timeStart;
+	//private long timeEnd;
 
 	// not used
 	private long minFreeMemory;
@@ -19,6 +22,9 @@ public class StatsManager {
 		this.end = 0;
 		this.expandedNodes = 0;
 		this.occupiedMemory = 0;
+		
+		//this.timeStart = 0;
+		//this.timeEnd = 0;
 
 		this.numMaxCache = 0;
 		this.currentCache = 0;
@@ -47,6 +53,22 @@ public class StatsManager {
 	public void setEnd(long end) {
 		this.end = end;
 	}
+	
+	/*public long getTimeStart() {
+		return timeStart;
+	}
+	
+	public void setTimeStart(long timeStart) {
+		this.timeStart = timeStart;
+	}
+	
+	public long getTimeEnd() {
+		return timeEnd;
+	}
+	
+	public void setTimeEnd(long timeEnd) {
+		this.timeEnd = timeEnd;
+	}*/
 
 	public int getExpandedNodes() {
 		return expandedNodes;
@@ -76,6 +98,7 @@ public class StatsManager {
 	public void printResults() {
 		String results = "-----RESULTS-----\n";
 		results += "Tempo: " + (this.getEnd() - this.getStart()) + " millisecondi\n";
+		//results += "Tempo totale: " + (this.getTimeEnd() - this.getTimeStart()) + "\n";
 		results += "Nodi espansi: " + this.getExpandedNodes() + "\n";
 		results += "Memoria attualmente occupata: " + this.getOccupiedMemoryInMB() + " MB\n";
 

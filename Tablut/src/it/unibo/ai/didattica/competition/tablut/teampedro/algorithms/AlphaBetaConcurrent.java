@@ -82,6 +82,8 @@ public class AlphaBetaConcurrent implements IA {
 
 		List<MinMaxConcurrent> threads = new ArrayList<MinMaxConcurrent>();
 
+		//StatsManager.getInstance().setTimeStart(System.currentTimeMillis());
+		
 		for (int d = 1; d <= GameManager.getInstance().getMaxDepth(); ++d) {
 
 			System.out.println("\nSTART DEPTH = " + (d + 1));
@@ -130,7 +132,7 @@ public class AlphaBetaConcurrent implements IA {
 
 			}
 			System.out.println("END DEPTH = " + (d + 1) + "\n");
-		//	StatsManager.getInstance().printResults();
+			//StatsManager.getInstance().printResults();
 
 			Node bestNextNode = rootChildren.stream().max(Comparator.comparing(n -> n.getValue())).get();
 
@@ -142,7 +144,9 @@ public class AlphaBetaConcurrent implements IA {
 			threads.clear();
 		}
 
-
+		
+		//StatsManager.getInstance().setEndTime(System.currentTimeMillis());
+	
 		this.rootChildren.clear();
 		return this.bestMove;
 

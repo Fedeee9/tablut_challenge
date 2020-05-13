@@ -1,0 +1,14 @@
+mag 13, 2020 10:30:23 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: Accensione server
+mag 13, 2020 10:30:23 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: Partita di Tablut
+mag 13, 2020 10:30:23 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: Waiting for white connection..
+mag 13, 2020 10:30:27 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: White player connected
+mag 13, 2020 10:30:27 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 13, 2020 10:30:28 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: White player name:	YinIAngWar
+mag 13, 2020 10:30:28 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+BUONO: Waiting for Black connection..
