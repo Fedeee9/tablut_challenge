@@ -81,8 +81,6 @@ public class AlphaBetaConcurrent implements IA {
 		this.bestMove = null;
 
 		List<MinMaxConcurrent> threads = new ArrayList<MinMaxConcurrent>();
-
-		//StatsManager.getInstance().setTimeStart(System.currentTimeMillis());
 		
 		for (int d = 1; d <= GameManager.getInstance().getMaxDepth(); ++d) {
 
@@ -122,7 +120,7 @@ public class AlphaBetaConcurrent implements IA {
 
 			}
 			StatsManager.getInstance().setEnd(System.currentTimeMillis());
-
+			
 			if (System.currentTimeMillis() > this.endTime) {
 				System.out.println("END DUE TO TIMEOUT\n");
 				// StatsManager.getInstance().printResults();
@@ -143,9 +141,6 @@ public class AlphaBetaConcurrent implements IA {
 
 			threads.clear();
 		}
-
-		
-		//StatsManager.getInstance().setEndTime(System.currentTimeMillis());
 	
 		this.rootChildren.clear();
 		return this.bestMove;

@@ -9,8 +9,8 @@ public class StatsManager {
 	private int expandedNodes;
 	private long occupiedMemory;
 	
-	//private long timeStart;
-	//private long timeEnd;
+	private long totalTime;
+	private long totalMemory;
 
 	// not used
 	private long minFreeMemory;
@@ -23,8 +23,8 @@ public class StatsManager {
 		this.expandedNodes = 0;
 		this.occupiedMemory = 0;
 		
-		//this.timeStart = 0;
-		//this.timeEnd = 0;
+		this.totalTime = 0;
+		this.totalMemory = 0;
 
 		this.numMaxCache = 0;
 		this.currentCache = 0;
@@ -54,32 +54,29 @@ public class StatsManager {
 		this.end = end;
 	}
 	
-	/*public long getTimeStart() {
-		return timeStart;
+	public long getTotalTime() {
+		return totalTime;
 	}
 	
-	public void setTimeStart(long timeStart) {
-		this.timeStart = timeStart;
+	public void setTotalTime(long totalTime) {
+		this.totalTime = totalTime;
 	}
 	
-	public long getTimeEnd() {
-		return timeEnd;
+	public long setTotalMemory() {
+		return totalMemory;
 	}
 	
-	public void setTimeEnd(long timeEnd) {
-		this.timeEnd = timeEnd;
-	}*/
+	public void getTotalMemory(long totalMemory) {
+		this.totalMemory = totalMemory;
+	}
 
 	public int getExpandedNodes() {
 		return expandedNodes;
 	}
 
 	public long getOccupiedMemoryInMB() {
-
 		long usedMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-		// long usedMemory = Runtime.getRuntime().totalMemory();
 		return usedMemory / (1024 * 1024);
-		// return totalMemory;
 	}
 
 	public void reset() {
@@ -98,10 +95,20 @@ public class StatsManager {
 	public void printResults() {
 		String results = "-----RESULTS-----\n";
 		results += "Tempo: " + (this.getEnd() - this.getStart()) + " millisecondi\n";
-		//results += "Tempo totale: " + (this.getTimeEnd() - this.getTimeStart()) + "\n";
+		this.totalTime = totalTime + (this.getEnd() - this.getStart());
 		results += "Nodi espansi: " + this.getExpandedNodes() + "\n";
 		results += "Memoria attualmente occupata: " + this.getOccupiedMemoryInMB() + " MB\n";
+		this.totalMemory = totalMemory + this.getOccupiedMemoryInMB();
+		results += "\n";
 
+		System.out.println(results);
+	}
+	
+	public void printTotalResults() {
+		String results = "-----TOTAL RESULTS-----\n";
+		results += "Tempo totale: " +this.totalTime/60000+" secondi\n";
+		results += "Memoria totale: " +this.totalMemory+" MB\n";
+		
 		System.out.println(results);
 	}
 

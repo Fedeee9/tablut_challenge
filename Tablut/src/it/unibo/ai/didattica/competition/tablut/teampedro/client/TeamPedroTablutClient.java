@@ -260,6 +260,8 @@ public class TeamPedroTablutClient extends TablutClient {
 				// ï¿½ il turno dell'avversario
 				else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
 					System.out.println("Waiting for your opponent move... ");
+					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 				}
 				// ho vinto
 				else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
@@ -315,6 +317,8 @@ public class TeamPedroTablutClient extends TablutClient {
 
 				else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 					System.out.println("Waiting for your opponent move... ");
+					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 				} else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 					System.out.println("YOU LOSE!");
 					StatsManager.getInstance().printResults();
