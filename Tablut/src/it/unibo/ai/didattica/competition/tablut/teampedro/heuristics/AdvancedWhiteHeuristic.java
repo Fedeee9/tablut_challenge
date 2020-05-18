@@ -84,7 +84,6 @@ public class AdvancedWhiteHeuristic implements Heuristic {
 		this.extractValues(state);
 		this.calculatePhasis();
 
-		// printValues();
 
 		// double result = myRandom(-1, 1);
 		double result = 0;

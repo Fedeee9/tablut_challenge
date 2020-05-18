@@ -6,28 +6,25 @@ public class StatsManager {
 
 	private long start;
 	private long end;
+	private long totalPart;
 	private int expandedNodes;
-	private long occupiedMemory;
+
 	
+	private long startTotal;
+	private long endTotal;
 	private long totalTime;
 	private long totalMemory;
-
-	// not used
-	private long minFreeMemory;
-	private int numMaxCache;
-	private int currentCache;
 
 	private StatsManager() {
 		this.start = 0;
 		this.end = 0;
+		this.totalPart = 0;
 		this.expandedNodes = 0;
-		this.occupiedMemory = 0;
 		
+		this.startTotal = 0;
+		this.endTotal = 0;
 		this.totalTime = 0;
 		this.totalMemory = 0;
-
-		this.numMaxCache = 0;
-		this.currentCache = 0;
 	}
 
 	public static StatsManager getInstance() {
@@ -52,6 +49,30 @@ public class StatsManager {
 
 	public void setEnd(long end) {
 		this.end = end;
+	}
+	
+	public long getTotalPart() {
+		return totalPart;
+	}
+	
+	public void setTotalPart(long totalPart) {
+		this.totalPart = totalPart;
+	}
+	
+	public void setStartTotal(long startTotal) {
+		this.startTotal = startTotal;
+	}
+	
+	public long getStartTotal() {
+		return startTotal;
+	}
+	
+	public void setEndTotal(long endTotal) {
+		this.endTotal = endTotal;
+	}
+	
+	public long getEndTotal() {
+		return endTotal;
 	}
 	
 	public long getTotalTime() {
@@ -80,12 +101,9 @@ public class StatsManager {
 	}
 
 	public void reset() {
-
 		this.start = 0;
 		this.end = 0;
 		this.expandedNodes = 0;
-		this.occupiedMemory = 0;
-
 	}
 
 	public void incrementExpandedNodes() {
@@ -94,8 +112,9 @@ public class StatsManager {
 
 	public void printResults() {
 		String results = "-----RESULTS-----\n";
-		results += "Tempo: " + (this.getEnd() - this.getStart()) + " millisecondi\n";
-		this.totalTime = totalTime + (this.getEnd() - this.getStart());
+		this.totalPart = totalPart + (this.getEnd() - this.getStart());
+		//results += "Tempo: " + (this.getEnd() - this.getStart())/1000 + " secondi\n";
+		results += "Tempo: "+ totalPart/1000 +" secondi\n";
 		results += "Nodi espansi: " + this.getExpandedNodes() + "\n";
 		results += "Memoria attualmente occupata: " + this.getOccupiedMemoryInMB() + " MB\n";
 		this.totalMemory = totalMemory + this.getOccupiedMemoryInMB();
@@ -106,60 +125,10 @@ public class StatsManager {
 	
 	public void printTotalResults() {
 		String results = "-----TOTAL RESULTS-----\n";
-		results += "Tempo totale: " +this.totalTime/60000+" secondi\n";
+		this.totalTime = this.getEndTotal() - this.getStartTotal();
+		results += "Tempo totale: " +this.totalTime/60000+" minuti\n";
 		results += "Memoria totale: " +this.totalMemory+" MB\n";
 		
 		System.out.println(results);
 	}
-
-	// not used
-
-	public void update(String arg) {
-		switch (arg) {
-		case "start": {
-			this.start = System.currentTimeMillis();
-			this.occupiedMemory = Runtime.getRuntime().totalMemory();
-			this.minFreeMemory = Runtime.getRuntime().totalMemory();
-			break;
-		}
-		case "end": {
-			this.end = System.currentTimeMillis();
-			break;
-		}
-		case "space": {
-			this.expandedNodes++;
-			long freeMemory = Runtime.getRuntime().freeMemory();
-			if (freeMemory < minFreeMemory)
-				minFreeMemory = freeMemory;
-			break;
-		}
-		case "reset": {
-			this.end = 0;
-			this.minFreeMemory = 0;
-			this.start = 0;
-			this.occupiedMemory = 0;
-			this.expandedNodes = 0;
-
-			break;
-		}
-		case "cache": {
-			currentCache++;
-			break;
-		}
-		case "resetCache": {
-			System.out.println("resetto");
-			if (currentCache > numMaxCache) {
-				System.out.println("new max");
-				numMaxCache = currentCache;
-			}
-			currentCache = 0;
-
-			break;
-		}
-		default: {
-			System.err.println("stat " + arg + " not recognised");
-		}
-		}
-	}
-
 }

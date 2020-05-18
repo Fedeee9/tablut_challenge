@@ -65,7 +65,6 @@ public class AlphaBetaConcurrent implements IA {
 			}
 			if (n.getState().getTurn().equalsTurn(State.Turn.BLACKWIN.toString())
 					&& GameManager.getInstance().getPlayer().equalsIgnoreCase("black")) {
-
 				return n.getMove();
 
 			}

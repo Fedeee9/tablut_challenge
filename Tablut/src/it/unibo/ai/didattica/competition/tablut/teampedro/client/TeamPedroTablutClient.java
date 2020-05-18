@@ -176,6 +176,9 @@ public class TeamPedroTablutClient extends TablutClient {
 
 	@Override
 	public void run() {
+		
+		//tempo start
+		StatsManager.getInstance().setStartTotal(System.currentTimeMillis());
 
 		try {
 			this.declareName();
@@ -227,7 +230,7 @@ public class TeamPedroTablutClient extends TablutClient {
 			GameManager.getInstance().addVisitedState(state);
 
 			if (this.getPlayer().equals(Turn.WHITE)) {
-				// ï¿½ il mio turno quando sono il bianco
+				// è il mio turno quando sono il bianco
 				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
 					Action a = null;
 					try {
@@ -257,34 +260,36 @@ public class TeamPedroTablutClient extends TablutClient {
 					}
 
 				}
-				// ï¿½ il turno dell'avversario
+				// è il turno dell'avversario
 				else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
-					System.out.println("Waiting for your opponent move... ");
 					StatsManager.getInstance().printResults();
-					StatsManager.getInstance().printTotalResults();
+					System.out.println("Waiting for your opponent move... ");
 				}
 				// ho vinto
 				else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("YOU WIN!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				}
 				// ho perso
 				else if (state.getTurn().equals(StateTablut.Turn.BLACKWIN)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("YOU LOSE!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				}
 				// pareggio
 				else if (state.getTurn().equals(StateTablut.Turn.DRAW)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("DRAW!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				}
 
 			} else {
 
-				// ï¿½ il mio turno quando sono il nero
+				// è il mio turno quando sono il nero
 				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 					Action a = null;
 
@@ -316,20 +321,22 @@ public class TeamPedroTablutClient extends TablutClient {
 				}
 
 				else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
+					StatsManager.getInstance().printResults();
 					System.out.println("Waiting for your opponent move... ");
-					StatsManager.getInstance().printResults();
-					StatsManager.getInstance().printTotalResults();
 				} else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("YOU LOSE!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				} else if (state.getTurn().equals(StateTablut.Turn.BLACKWIN)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("YOU WIN!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				} else if (state.getTurn().equals(StateTablut.Turn.DRAW)) {
+					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
 					System.out.println("DRAW!");
-					StatsManager.getInstance().printResults();
+					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				}
 

@@ -19,8 +19,10 @@ import it.unibo.ai.didattica.competition.tablut.exceptions.ThroneException;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedBlackHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedWhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.BlackHeuristic;
+import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.BlackHeuristicPedro;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.Heuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristic;
+import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristicPedro;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.GameManager;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.StatsManager;
 
@@ -37,9 +39,11 @@ public class MinMaxConcurrent extends Thread {
 
 		if (GameManager.getInstance().getPlayer().equalsIgnoreCase("black")) {
 			// this.heuristic = new BlackHeuristic();
-			this.heuristic = new AdvancedBlackHeuristic();
+			//this.heuristic = new AdvancedBlackHeuristic();
+			this.heuristic = new BlackHeuristicPedro();
 		} else if (GameManager.getInstance().getPlayer().equalsIgnoreCase("white")) {
-			this.heuristic = new AdvancedWhiteHeuristic();
+			this.heuristic = new WhiteHeuristicPedro();
+			//this.heuristic = new AdvancedWhiteHeuristic();
 		}
 		this.endTime = endTime;
 		this.depthToReach = d;
