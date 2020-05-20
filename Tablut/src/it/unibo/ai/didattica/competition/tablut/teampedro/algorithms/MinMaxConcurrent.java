@@ -1,7 +1,5 @@
 package it.unibo.ai.didattica.competition.tablut.teampedro.algorithms;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 
@@ -16,12 +14,8 @@ import it.unibo.ai.didattica.competition.tablut.exceptions.OccupitedException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.PawnException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.StopException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.ThroneException;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedBlackHeuristic;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.AdvancedWhiteHeuristic;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.BlackHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.BlackHeuristicPedro;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.Heuristic;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristicPedro;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.GameManager;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.StatsManager;
@@ -38,12 +32,9 @@ public class MinMaxConcurrent extends Thread {
 		this.nodes = nodes;
 
 		if (GameManager.getInstance().getPlayer().equalsIgnoreCase("black")) {
-			// this.heuristic = new BlackHeuristic();
-			//this.heuristic = new AdvancedBlackHeuristic();
 			this.heuristic = new BlackHeuristicPedro();
 		} else if (GameManager.getInstance().getPlayer().equalsIgnoreCase("white")) {
 			this.heuristic = new WhiteHeuristicPedro();
-			//this.heuristic = new AdvancedWhiteHeuristic();
 		}
 		this.endTime = endTime;
 		this.depthToReach = d;
@@ -64,7 +55,6 @@ public class MinMaxConcurrent extends Thread {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	private double maxValue(Node node, int depth, int maxDepth, double alpha, double beta)
@@ -108,7 +98,6 @@ public class MinMaxConcurrent extends Thread {
 
 				return 0;
 			}
-
 		}
 
 		return v;

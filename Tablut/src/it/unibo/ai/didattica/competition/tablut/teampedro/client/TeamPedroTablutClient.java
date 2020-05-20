@@ -35,9 +35,9 @@ public class TeamPedroTablutClient extends TablutClient {
 	private IA ia;
 	private GuiCli gui;
 
-	public TeamPedroTablutClient(String player, String name, int gameChosen, int timeout)
+	public TeamPedroTablutClient(String player, String name, int gameChosen, int timeout, String ipAddress)
 			throws UnknownHostException, IOException {
-		super(player, name);
+		super(player, name, timeout, ipAddress);
 		this.game = gameChosen;
 		this.gui = new GuiCli();
 		MyRules rules = null;
@@ -63,7 +63,7 @@ public class TeamPedroTablutClient extends TablutClient {
 
 		GameManager.getInstance().setRules(rules);
 
-		// this.ia = new AlphaBetaIterative();
+		//this.ia = new AlphaBetaIterative();
 		this.ia = new AlphaBetaConcurrent();
 
 	}
@@ -73,13 +73,16 @@ public class TeamPedroTablutClient extends TablutClient {
 		int gametype = 4;
 		String role = "";
 		String name = "TEAMPEDRO";
+		String ipaddress = "";
 		int timeout = 55;
 		int depth = 8;
 		int numThread = 8;
 
-		String usage = "Usage: java teampedro COLOR [-t <timeout>] [-p <core>] [-d <max_depth>]\n"
+		/*String usage = "Usage: java teampedro COLOR [-t <timeout>] [-p <core>] [-d <max_depth>]\n"
 				+ "\t<timeout> must be an integer (default 55)\n" + "\t<core> must be an integer (default 8\n"
-				+ "\t<max_depth> must be an integer (default 8)\n";
+				+ "\t<max_depth> must be an integer (default 8)\n";*/
+		
+		String usageT = "Usage: java teampedro COLOR timeout(default 55) ipAddress\n";
 
 		// TODO: change the behavior?
 		if (args.length < 1) {
@@ -87,9 +90,23 @@ public class TeamPedroTablutClient extends TablutClient {
 			System.exit(-1);
 		} else {
 			role = (args[0]);
+			
+			try {
+				timeout = Integer.parseInt(args[1]);
+				if (timeout < 1) {
+					System.out.println("Timeout format not allowed!");
+					System.exit(1);
+				}
+			} catch (Exception e) {
+				System.out.println("Timeout format is not correct!");
+				System.out.println(usageT);
+				System.exit(1);
+			}
+			
+			ipaddress = (args[2]);
 		}
 
-		for (int i = 1; i < args.length - 1; i++) {
+		/*for (int i = 1; i < args.length - 1; i++) {
 
 			if (args[i].equals("-t")) {
 				i++;
@@ -142,7 +159,7 @@ public class TeamPedroTablutClient extends TablutClient {
 				}
 
 			}
-		}
+		}*/
 
 		printName();
 
@@ -152,7 +169,7 @@ public class TeamPedroTablutClient extends TablutClient {
 
 		GameManager.getInstance().setParameters(timeout, depth, role.toLowerCase());
 		GameManager.getInstance().setNumThread(numThread);
-		TeamPedroTablutClient client = new TeamPedroTablutClient(role, name, gametype, timeout);
+		TeamPedroTablutClient client = new TeamPedroTablutClient(role, name, gametype, timeout, ipaddress);
 		client.run();
 	}
 
@@ -255,7 +272,7 @@ public class TeamPedroTablutClient extends TablutClient {
 				}
 				// è il turno dell'avversario
 				else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
-					StatsManager.getInstance().printResults();
+					//StatsManager.getInstance().printResults();
 					System.out.println("Waiting for your opponent move... ");
 				}
 				// ho vinto
@@ -314,7 +331,7 @@ public class TeamPedroTablutClient extends TablutClient {
 				}
 
 				else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
-					StatsManager.getInstance().printResults();
+					//StatsManager.getInstance().printResults();
 					System.out.println("Waiting for your opponent move... ");
 				} else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 					StatsManager.getInstance().setEndTotal(System.currentTimeMillis());
@@ -332,7 +349,6 @@ public class TeamPedroTablutClient extends TablutClient {
 					StatsManager.getInstance().printTotalResults();
 					System.exit(0);
 				}
-
 			}
 		}
 	}

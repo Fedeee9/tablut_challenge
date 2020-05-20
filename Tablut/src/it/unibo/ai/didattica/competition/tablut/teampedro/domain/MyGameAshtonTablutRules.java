@@ -20,7 +20,6 @@ import it.unibo.ai.didattica.competition.tablut.exceptions.StopException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.ThroneException;
 import it.unibo.ai.didattica.competition.tablut.teampedro.algorithms.Node;
 import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.Heuristic;
-import it.unibo.ai.didattica.competition.tablut.teampedro.heuristics.WhiteHeuristic;
 import it.unibo.ai.didattica.competition.tablut.teampedro.util.GameManager;
 
 public class MyGameAshtonTablutRules implements MyRules {

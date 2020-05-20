@@ -117,6 +117,8 @@ public class StatsManager {
 		results += "Occupied memory: " + this.getOccupiedMemoryInMB() + " MB\n";
 		this.totalMemory = totalMemory + this.getOccupiedMemoryInMB();
 		results += "\n";
+		
+		totalPart = 0;
 
 		System.out.println(results);
 	}

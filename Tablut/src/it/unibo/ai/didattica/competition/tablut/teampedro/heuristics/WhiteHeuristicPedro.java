@@ -117,7 +117,7 @@ public class WhiteHeuristicPedro implements Heuristic {
 
 		result += WHITE_WEIGHT_KING_FAVOURITE * this.kingOnFavourite;
 
-		result += WHITE_WEIGHT_GUARDS * this.guards;// * ( 1 + ((initial)?1:0)*3);
+		result += WHITE_WEIGHT_GUARDS * this.guards;
 
 		result += WHITE_WEIGHT_STRATEGY * this.quadranteFavouriteBlocked / 4.0;
 
@@ -215,7 +215,7 @@ public class WhiteHeuristicPedro implements Heuristic {
 		}
 		
 		int maggiore;
-		//List<String> temp = Arrays.asList("2-0", "3-1", "0-2", "1-3"); 
+		
 		Map<Integer, Integer> temp = new HashMap<>();
 		temp.put(2, 0);
 		temp.put(3, 1);
@@ -712,19 +712,9 @@ public class WhiteHeuristicPedro implements Heuristic {
 							&& this.guardsPos.contains(state.getBox(i, j))) {
 						this.guards++;
 					}
-
-					/*
-					 * if (state.getPawn(i, j).equalsPawn(State.Pawn.WHITE.toString()) &&
-					 * this.disPosL.contains(state.getBox(i, j))) { this.disPos++; }
-					 */
-
 				}
-
 			}
 		}
-
-		// calcolo strategy
-
 	}
 	
 	private void printValues() {
@@ -745,6 +735,5 @@ public class WhiteHeuristicPedro implements Heuristic {
 		System.out.println("whitePawnsOverhanged = " + this.whitePawnsOverhanged);
 		System.out.println("kingOverhanged = " + this.kingOverhanged);
 		System.out.println("quadranteF = " + this.favourite);
-
 	}
 }
