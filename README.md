@@ -32,6 +32,18 @@ or
 java -jar teampedro.jar WHITE -p 2
 `
 
+Run JAR file
+
+`
+java -jar teampedro.jar BLACK <timeout> <ipaddress>
+`
+
+or
+
+`
+java -jar teampedro.jar WHITE <timeout> <ipaddress>
+`
+
 
 ### Optionally you can add some arguments to change the execution
 
