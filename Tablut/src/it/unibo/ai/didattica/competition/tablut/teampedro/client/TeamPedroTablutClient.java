@@ -86,7 +86,6 @@ public class TeamPedroTablutClient extends TablutClient {
 			System.out.println("You must specify which player you are (WHITE or BLACK)");
 			System.exit(-1);
 		} else {
-			// System.out.println(args[0]);
 			role = (args[0]);
 		}
 
@@ -151,9 +150,6 @@ public class TeamPedroTablutClient extends TablutClient {
 		System.out.println("Core: " + numThread);
 		System.out.println("Max depth: " + depth);
 
-		// System.out.println("Selected client: " + args[0]);
-		// System.out.println("YOUR NAME: " + name);
-
 		GameManager.getInstance().setParameters(timeout, depth, role.toLowerCase());
 		GameManager.getInstance().setNumThread(numThread);
 		TeamPedroTablutClient client = new TeamPedroTablutClient(role, name, gametype, timeout);
@@ -177,7 +173,6 @@ public class TeamPedroTablutClient extends TablutClient {
 	@Override
 	public void run() {
 		
-		//tempo start
 		StatsManager.getInstance().setStartTotal(System.currentTimeMillis());
 
 		try {
@@ -220,7 +215,6 @@ public class TeamPedroTablutClient extends TablutClient {
 			}
 			System.out.println("Current state:");
 			state = this.getCurrentState();
-			// System.out.println(state.toString());
 			this.gui.update(state);
 			try {
 				Thread.sleep(1000);
@@ -251,14 +245,13 @@ public class TeamPedroTablutClient extends TablutClient {
 						e1.printStackTrace();
 					}
 
-					System.out.println("Mossa scelta: " + a.toString());
+					System.out.println("Chosen move: " + a.toString());
 					try {
 						this.write(a);
 					} catch (ClassNotFoundException | IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
 				}
 				// è il turno dell'avversario
 				else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
@@ -310,7 +303,7 @@ public class TeamPedroTablutClient extends TablutClient {
 						e1.printStackTrace();
 					}
 
-					System.out.println("Mossa scelta: " + a.toString());
+					System.out.println("Chosen move: " + a.toString());
 					try {
 						this.write(a);
 					} catch (ClassNotFoundException | IOException e) {
@@ -342,7 +335,5 @@ public class TeamPedroTablutClient extends TablutClient {
 
 			}
 		}
-
 	}
-
 }

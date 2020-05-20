@@ -77,9 +77,6 @@ public class MinMaxConcurrent extends Thread {
 		}
 
 		if (depth == 0 || node.getState().getTurn().equalsTurn("WW") || node.getState().getTurn().equalsTurn("BW")) {
-			// return this.heuristic.heuristicBlack(node.getState());
-			// return this.heuristic.heuristicWhite(node.getState());
-
 			return this.heuristic.heuristic(node.getState());
 
 		}
@@ -93,11 +90,6 @@ public class MinMaxConcurrent extends Thread {
 			it.unibo.ai.didattica.competition.tablut.domain.State nextState = GameManager.getInstance().getRules()
 					.movePawn(node.getState().clone(), a);
 
-//			if (GameManager.getInstance().contains(nextState)) {
-//				System.out.println("Salto lo stato");
-//
-//				continue;
-//			}
 
 			Node n = new Node(nextState, Double.POSITIVE_INFINITY, a);
 
@@ -131,8 +123,6 @@ public class MinMaxConcurrent extends Thread {
 			return 0;
 		}
 		if (depth == 0 || node.getState().getTurn().equalsTurn("WW") || node.getState().getTurn().equalsTurn("BW")) {
-			// return this.heuristic.heuristicWhite(node.getState());
-			// return this.heuristic.heuristicBlack(node.getState());
 			return this.heuristic.heuristic(node.getState());
 		}
 
@@ -142,13 +132,6 @@ public class MinMaxConcurrent extends Thread {
 		for (Action a : possibleMoves) {
 			it.unibo.ai.didattica.competition.tablut.domain.State nextState = GameManager.getInstance().getRules()
 					.movePawn(node.getState().clone(), a);
-
-//			if (GameManager.getInstance().contains(nextState)) {
-//			
-//
-//				System.out.println("Salto lo stato");
-//				continue;
-//			}
 
 			Node n = new Node(nextState, Double.NEGATIVE_INFINITY, a);
 

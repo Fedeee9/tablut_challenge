@@ -8,15 +8,15 @@ import java.util.Random;
 
 public class BlackHeuristicPedro implements Heuristic {
 	
-	private double BLACK_WEIGHT_COUNT_WHITE_PAWNS = 4.0;
+	private double BLACK_WEIGHT_COUNT_WHITE_PAWNS = 3.0;
 	private double BLACK_WEIGHT_COUNT_BLACK_PAWNS = 6.0;
-	private double BLACK_WEIGHT_FREE_WAY_KING = 30.0;
-	private double BLACK_WEIGHT_KING_OVERHANGED = 2.0;
+	private double BLACK_WEIGHT_FREE_WAY_KING = 25.0;
+	private double BLACK_WEIGHT_KING_OVERHANGED = 1.0;
 	private double BLACK_WEIGHT_KING_ON_STAR = 50.0;
 	private double BLACK_WEIGHT_BLACK_PAWNS_OVERHANGED = 1.0;
-	private double BLACK_WEIGHT_WHITE_PAWNS_OVERHANGED = 1.0;
-	private double BLACK_WEIGHT_BLACKBARRIER = 18.0;
-	private double BLACK_WEIGHT_Q = 15.0;
+	private double BLACK_WEIGHT_WHITE_PAWNS_OVERHANGED = 0.5;
+	private double BLACK_WEIGHT_BLACKBARRIER = 20.0;
+	private double BLACK_WEIGHT_Q = 10.0;
 
 	private int countB;
 	private int countW;
@@ -80,13 +80,13 @@ public class BlackHeuristicPedro implements Heuristic {
 		double result = 0;
 
 
-		result += BLACK_WEIGHT_COUNT_BLACK_PAWNS * ((double) this.countB / 16);
+		result += BLACK_WEIGHT_COUNT_BLACK_PAWNS * (this.countB);
 
 
-		result -= BLACK_WEIGHT_COUNT_WHITE_PAWNS * ((double) this.countW / 9);
+		result -= BLACK_WEIGHT_COUNT_WHITE_PAWNS * (this.countW);
 
-		result -= BLACK_WEIGHT_BLACK_PAWNS_OVERHANGED * ((double) this.blackPawnsOverhanged/ this.countB);
-		
+		result -= BLACK_WEIGHT_BLACK_PAWNS_OVERHANGED * (this.blackPawnsOverhanged);
+		result -= BLACK_WEIGHT_WHITE_PAWNS_OVERHANGED * (this.whitePawnsOverhanged);
 		
 		result += BLACK_WEIGHT_KING_OVERHANGED * (this.kingOverhangedB);
 
@@ -96,10 +96,10 @@ public class BlackHeuristicPedro implements Heuristic {
 
 		result += BLACK_WEIGHT_BLACKBARRIER * ((double) this.blackBarrierPawns / 8);
 
-		result += BLACK_WEIGHT_Q * ((double) this.blackPawnsQ1 / this.countB) * this.kingInQ1;
-		result += BLACK_WEIGHT_Q * ((double) this.blackPawnsQ2 / this.countB) * this.kingInQ2;
-		result += BLACK_WEIGHT_Q * ((double) this.blackPawnsQ3 / this.countB) * this.kingInQ3;
-		result += BLACK_WEIGHT_Q * ((double) this.blackPawnsQ4 / this.countB) * this.kingInQ4;
+		result += BLACK_WEIGHT_Q * (this.blackPawnsQ1) * this.kingInQ1;
+		result += BLACK_WEIGHT_Q * (this.blackPawnsQ2) * this.kingInQ2;
+		result += BLACK_WEIGHT_Q * (this.blackPawnsQ3) * this.kingInQ3;
+		result += BLACK_WEIGHT_Q * (this.blackPawnsQ4) * this.kingInQ4;
 
 		return result;
 	}
@@ -584,6 +584,4 @@ public class BlackHeuristicPedro implements Heuristic {
 		System.out.println("kingInQ3 = " + this.kingInQ3);
 		System.out.println("kingInQ4 = " + this.kingInQ4);
 	}
-
-
 }

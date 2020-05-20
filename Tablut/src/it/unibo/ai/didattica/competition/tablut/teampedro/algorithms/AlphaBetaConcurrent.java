@@ -98,8 +98,6 @@ public class AlphaBetaConcurrent implements IA {
 				if (i == NUM_THREAD - 1) {
 					to = this.rootChildren.size();
 				}
-				// System.out.println("dim rootChildren = " + this.rootChildren.size() + " size
-				// = " + size + " Thread da " + from + " to " + to);
 
 				MinMaxConcurrent t = new MinMaxConcurrent(this.rootChildren.subList(from, to), d, this.endTime);
 				threads.add(t);
@@ -122,19 +120,15 @@ public class AlphaBetaConcurrent implements IA {
 			
 			if (System.currentTimeMillis() > this.endTime) {
 				System.out.println("END DUE TO TIMEOUT\n");
-				// StatsManager.getInstance().printResults();
 				this.rootChildren.clear();
 
 				return this.bestMove;
 
 			}
 			System.out.println("END DEPTH = " + (d + 1) + "\n");
-			//StatsManager.getInstance().printResults();
-
+			
 			Node bestNextNode = rootChildren.stream().max(Comparator.comparing(n -> n.getValue())).get();
 
-			// System.out.println("Temp move found: " + bestNextNode.getMove() + " H: " +
-			// bestNextNode.getValue());
 
 			this.bestMove = bestNextNode.getMove();
 
@@ -145,5 +139,4 @@ public class AlphaBetaConcurrent implements IA {
 		return this.bestMove;
 
 	}
-
 }

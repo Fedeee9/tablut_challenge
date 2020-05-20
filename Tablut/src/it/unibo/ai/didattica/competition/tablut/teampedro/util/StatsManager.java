@@ -9,7 +9,6 @@ public class StatsManager {
 	private long totalPart;
 	private int expandedNodes;
 
-	
 	private long startTotal;
 	private long endTotal;
 	private long totalTime;
@@ -113,10 +112,9 @@ public class StatsManager {
 	public void printResults() {
 		String results = "-----RESULTS-----\n";
 		this.totalPart = totalPart + (this.getEnd() - this.getStart());
-		//results += "Tempo: " + (this.getEnd() - this.getStart())/1000 + " secondi\n";
-		results += "Tempo: "+ totalPart/1000 +" secondi\n";
-		results += "Nodi espansi: " + this.getExpandedNodes() + "\n";
-		results += "Memoria attualmente occupata: " + this.getOccupiedMemoryInMB() + " MB\n";
+		results += "Time: "+ totalPart/1000 +" seconds\n";
+		results += "Expanded nodes: " + this.getExpandedNodes() + "\n";
+		results += "Occupied memory: " + this.getOccupiedMemoryInMB() + " MB\n";
 		this.totalMemory = totalMemory + this.getOccupiedMemoryInMB();
 		results += "\n";
 
@@ -126,8 +124,8 @@ public class StatsManager {
 	public void printTotalResults() {
 		String results = "-----TOTAL RESULTS-----\n";
 		this.totalTime = this.getEndTotal() - this.getStartTotal();
-		results += "Tempo totale: " +this.totalTime/60000+" minuti\n";
-		results += "Memoria totale: " +this.totalMemory+" MB\n";
+		results += "Total time: " +this.totalTime/60000+" minuts\n";
+		results += "Total memory: " +this.totalMemory+" MB\n";
 		
 		System.out.println(results);
 	}
